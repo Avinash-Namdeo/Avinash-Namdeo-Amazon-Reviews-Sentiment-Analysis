@@ -164,7 +164,9 @@ if "review_input" not in st.session_state:
 
 with col1:
     st.header("📝 Enter Review Text")
-    
+    def clear_text():
+        st.session_state.review_input = ""
+
     # Text area is now bound directly to session_state
     review_text = st.text_area(
         "Paste your Amazon review here:",
@@ -180,8 +182,8 @@ with col1:
         analyze_btn = st.button("🔍 Analyze Sentiment", type="primary", use_container_width=True)
     
     with col_btn2:
-        if st.button("🗑️ Clear Text", use_container_width=True):
-            st.session_state.review_input = ""   # clear text instantly
+        st.button("🗑️ Clear Text", use_container_width=True, on_click=clear_text)
+
 
 with col2:
     st.header("📈 Analysis Stats")
